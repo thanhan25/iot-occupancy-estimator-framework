@@ -1,0 +1,12 @@
+data:
+  raw_path: "data/raw/sensor_telemetry.csv"
+  processed_path: "data/processed/features.csv"
+model:
+  save_path: "models/occupancy_rf_model.pkl"
+  target_col: "occupancy"
+  test_size: 0.2
+  random_state: 42
+  rf_estimators: 100
+features:
+  rolling_window_mins: 15
+  sensor_columns: ["co2_ppm", "temperature_c", "luminance_lux", "pir_motion"]
