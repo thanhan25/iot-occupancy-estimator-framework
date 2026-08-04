@@ -1,0 +1,16 @@
+.PHONY: install generate run test clean
+
+install:
+	pip install -r requirements.txt
+
+generate:
+	python generate_mock_data.py
+
+run:
+	python -m src.pipeline
+
+test:
+	pytest -v tests/
+
+clean:
+	rm -rf data/raw/* data/processed/* models/* assets/* .pytest_cache .venv

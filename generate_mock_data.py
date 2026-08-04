@@ -4,7 +4,7 @@ import os
 
 def generate_telemetry(days=7, freq='1min'):
     print("Initializing IoT Telemetry Simulation...")
-    timestamps = pd.date_range(start='2026-08-01', periods=(days * 24 * 60), freq=freq)
+    timestamps = pd.date_range(start='2026-08-03', periods=(days * 24 * 60), freq=freq)
     df = pd.DataFrame({'timestamp': timestamps})
     
     # Simulate human behavior (Office hours 08:00 - 18:00)
