@@ -1,3 +1,4 @@
+import os
 import yaml
 import joblib
 from sklearn.ensemble import RandomForestClassifier
@@ -23,5 +24,12 @@ def train_occupancy_model(df, config_path='config.yaml'):
     print(f"Model Accuracy: {accuracy_score(y_test, preds):.4f}")
     print("Classification Report:\n", classification_report(y_test, preds))
     
-    joblib.dump(clf, config['model']['save_path'])
-    print(f"-> Model saved to {config['model']['save_path']}")
+    # ---------------------------------------------------------
+    # FIX: Dynamically ensure the destination directory exists 
+    # before attempting to serialize the model binary.
+    # ---------------------------------------------------------
+    save_path = config['model']['save_path']
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    
+    joblib.dump(clf, save_path)
+    print(f"-> Model saved to {save_path}")
